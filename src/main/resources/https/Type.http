@@ -3,17 +3,17 @@ POST http://localhost:8080/type/create
 Content-Type: application/json
 
 {
-  "name": ""
+  "name": "Kiyim"
 }
 
 ### Get by id
-GET http://localhost:8080/type/2
+GET http://localhost:8080/type/1
 
 ### Get All
 GET http://localhost:8080/type/getAll
 
 ### Update by Id
-PUT http://localhost:8080/type/2
+PUT http://localhost:8080/type/1
 Content-Type: application/json
 
 {
@@ -21,4 +21,4 @@ Content-Type: application/json
 }
 
 ### Delete by id
-DELETE http://localhost:8080/type/2
+DELETE http://localhost:8080/type/1

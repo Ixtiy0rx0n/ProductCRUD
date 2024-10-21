@@ -7,13 +7,13 @@ Content-Type: application/json
 }
 
 ### Get by id
-GET http://localhost:8080/status/2
+GET http://localhost:8080/status/4
 
 ### Get All
 GET http://localhost:8080/status/getAll
 
 ### Update by Id
-PUT http://localhost:8080/status/1
+PUT http://localhost:8080/status/4
 Content-Type: application/json
 
 {
@@ -21,4 +21,4 @@ Content-Type: application/json
 }
 
 ### Delete by id
-DELETE http://localhost:8080/status/5
+DELETE http://localhost:8080/status/4

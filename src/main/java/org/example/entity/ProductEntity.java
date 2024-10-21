@@ -20,18 +20,28 @@ public class ProductEntity {
     @Column(name = "price")
     private double price;
 
-    @ManyToOne
-    @JoinColumn(name = "type", insertable = false, updatable = false)
-    private ProductTypeEntity type;
-
     @Column(name = "type")
     private Integer typeId;
 
-    @ManyToOne
-    @JoinColumn(name = "status", insertable = false, updatable = false)
-    private ProductStatusEntity status;
+    @Column(name = "typeName")
+    private String typeName;
 
     @Column(name = "status")
     private Integer statusId;
 
+    @Column(name = "statusName")
+    private String statusName;
+
+    public ProductEntity(Integer id, String name, double price, Integer typeId, String typeName, Integer statusId, String statusName) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.typeId = typeId;
+        this.typeName = typeName;
+        this.statusId = statusId;
+        this.statusName = statusName;
+    }
+
+    public ProductEntity() {
+    }
 }

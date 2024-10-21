@@ -29,7 +29,7 @@ public class ProductService {
     }
 
     public List<ProductDTO> getAll() {
-        List<ProductEntity> entityList = productRepository.findAll();
+        List<ProductEntity> entityList = productRepository.getAllProductsWithTypeAndStatus();
         if (!entityList.isEmpty()) {
             List<ProductDTO> dtoList = new ArrayList<>();
             for (ProductEntity entity : entityList) {
@@ -37,8 +37,10 @@ public class ProductService {
                 dto.setId(entity.getId());
                 dto.setName(entity.getName());
                 dto.setPrice(entity.getPrice());
+                dto.setTypeName(entity.getTypeName());
                 dto.setTypeId(entity.getTypeId());
                 dto.setStatusId(entity.getStatusId());
+                dto.setStatusName(entity.getStatusName());
                 dtoList.add(dto);
             }
             return dtoList;
@@ -48,7 +50,7 @@ public class ProductService {
     }
 
     public ProductDTO getById(Integer id) {
-        Optional<ProductEntity> optional = productRepository.findById(id);
+        Optional<ProductEntity> optional = productRepository.getFullData(id);
         if (optional.isPresent()) {
             ProductEntity entity = optional.get();
             ProductDTO dto = new ProductDTO();
@@ -57,6 +59,8 @@ public class ProductService {
             dto.setPrice(entity.getPrice());
             dto.setTypeId(entity.getTypeId());
             dto.setStatusId(entity.getStatusId());
+            dto.setTypeName(entity.getTypeName());
+            dto.setStatusName(entity.getStatusName());
             return dto;
         } else {
             throw new AppBadException("Product not found");
@@ -66,7 +70,7 @@ public class ProductService {
     public ProductDTO updateById(Integer id, ProductDTO dto) {
         Optional<ProductEntity> optional = productRepository.findById(id);
         if (optional.isPresent()) {
-            productRepository.updateById(dto.getName(), dto.getPrice(), dto.getTypeId(), dto.getStatusId(), dto.getId());
+            productRepository.updateById(dto.getName(), dto.getPrice(), dto.getTypeId(), dto.getStatusId(), id);
             dto.setId(id);
             return dto;
         } else {
